@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بلنگ سسٹم | Invoice MD</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-file-invoice"></i>
+                <h1>INVOICE <span>MD</span></h1>
+            </div>
+            <p class="subtitle">اپنا بل بنائیں اور واٹس ایپ پر بھیجیں</p>
+            <div class="status-bar">
+                <span><i class="fas fa-circle"></i> Active</span>
+                <span>Limit: <b id="limitCount">--</b>/50</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Left Panel -->
+            <div class="bill-form">
+                <h2><i class="fas fa-plus-circle"></i> نیا بل بنائیں</h2>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> گاہک کا نام</label>
+                    <input type="text" id="customerName" placeholder="مثلاً: احمد علی">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> واٹس ایپ نمبر</label>
+                    <input type="text" id="customerPhone" placeholder="ملک کا کوڈ شامل کریں (مثلاً 92 برائے پاکستان)">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-tag"></i> بل کا عنوان</label>
+                    <input type="text" id="billTitle" placeholder="مثلاً: ویب سائٹ ڈیزائن">
+                </div>
+
+                <h3><i class="fas fa-list"></i> آئٹمز شامل کریں</h3>
+                
+                <div class="items-container" id="itemsContainer">
+                    <div class="item-row">
+                        <input type="text" class="item-name" placeholder="آئٹم کا نام">
+                        <input type="number" class="item-qty" placeholder="مقدار" value="1" min="1">
+                        <input type="number" class="item-price" placeholder="قیمت" min="0">
+                        <button class="remove-item" onclick="removeItem(this)"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+                
+                <button class="add-item-btn" onclick="addItem()">
+                    <i class="fas fa-plus"></i> مزید آئٹم شامل کریں
+                </button>
+
+                <div class="total-section">
+                    <span>کل رقم:</span>
+                    <span id="totalAmount">Rs. 0</span>
+                </div>
+
+                <button class="generate-btn" onclick="generateBill()">
+                    <i class="fas fa-file-invoice"></i> بل جنریٹ کریں
+                </button>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="bill-preview" id="billPreview">
+                <div class="preview-header">
+                    <i class="fas fa-eye"></i>
+                    <h2>بل کا پیش منظر</h2>
+                </div>
+                
+                <div class="preview-box" id="previewBox">
+                    <div class="empty-state">
+                        <i class="fas fa-file-invoice"></i>
+                        <p>بل بنانے کے لیے بائیں جانب فارم پُر کریں</p>
+                        <p class="small">آپ کا بل یہاں ظاہر ہوگا</p>
+                    </div>
+                </div>
+
+                <div class="whatsapp-section" id="whatsappSection" style="display:none;">
+                    <div class="server-grid">
+                        <h3><i class="fas fa-server"></i> واٹس ایپ سرور منتخب کریں</h3>
+                        <div class="servers">
+                            <button class="server-btn active" onclick="selectServer(this, 1)">سرور 1</button>
+                            <button class="server-btn" onclick="selectServer(this, 2)">سرور 2</button>
+                            <button class="server-btn" onclick="selectServer(this, 3)">سرور 3</button>
+                            <button class="server-btn" onclick="selectServer(this, 4)">سرور 4</button>
+                            <button class="server-btn" onclick="selectServer(this, 5)">سرور 5</button>
+                        </div>
+                    </div>
+
+                    <button class="send-btn" onclick="sendToWhatsApp()">
+                        <i class="fab fa-whatsapp"></i> واٹس ایپ پر بھیجیں
+                    </button>
+
+                    <div class="response-box" id="responseBox">
+                        آپ کا میسج آئی ڈی یہاں ظاہر ہوگا
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 INVOICE MD | Powered By <b>آپ کا نام</b></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
